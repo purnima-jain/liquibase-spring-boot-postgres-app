@@ -1,0 +1,29 @@
+version: "3.9"
+services:
+  postgres:
+    image: postgres:16.4
+    container_name: postgres_container
+    restart: always
+    ports:
+      - "15432:5432"
+    environment:
+      POSTGRES_DB: "postgres_db" # instructs PostgreSQL container to automatically create a default database with the provided name
+      POSTGRES_USER: "postgres_user" # sets the default username
+      POSTGRES_PASSWORD: "postgres_password" # sets the custom password for the PostgreSQL user
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+  pgadmin:
+    image: dpage/pgadmin4:9.3.0
+    container_name: pgadmin_container
+    restart: always
+    ports:
+      - "8888:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL:-pgadmin4@pgadmin.org} # Sets the default credentials for the pgAdmin user
+      PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD:-pgadmin_password} # Sets the default credentials for the pgAdmin user
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+
+volumes:
+  postgres-data:
+  pgadmin-data:
