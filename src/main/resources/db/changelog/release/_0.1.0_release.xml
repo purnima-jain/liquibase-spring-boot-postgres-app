@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+	<preConditions>
+		<dbms type="postgresql" />
+	</preConditions>
+
+	<!-- Tag so that we can rollback the change -->
+	<changeSet id="tag_create-_0.1.0_release" author="Purnima Jain">
+		<tagDatabase tag="_0.1.0_release" />
+	</changeSet>
+
+	<!-- Create CATEGORIES table -->
+	<changeSet id="Create CATEGORIES table" author="Purnima Jain">
+
+		<createTable tableName="CATEGORIES">
+			<column name="CAT_ID" type="int" autoIncrement="true">
+				<constraints nullable="false" primaryKey="true" primaryKeyName="PK_CATEGORIES" />
+			</column>
+			<column name="CAT_NAME" type="varchar(100)">
+				<constraints nullable="false" />
+			</column>
+		</createTable>
+
+		<rollback>
+			<dropTable tableName="CATEGORIES" />
+		</rollback>
+		
+	</changeSet>
+
+	<!-- Create index on CATEGORIES.CAT_ID column -->
+	<changeSet id="Create IX_CAT_ID" author="Purnima Jain">
+
+		<createIndex tableName="CATEGORIES" indexName="IX_CAT_ID">
+			<column name="CAT_ID" />
+		</createIndex>
+
+		<rollback>
+			<dropIndex indexName="IX_CAT_ID" tableName="CATEGORIES" />
+		</rollback>
+		
+	</changeSet>
+	
+</databaseChangeLog>    

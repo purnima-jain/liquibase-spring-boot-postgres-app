@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+	xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+	<preConditions>
+		<dbms type="postgresql" />
+	</preConditions>
+
+	<!-- Tag so that we can rollback the change -->
+	<changeSet id="tag_create-_0.1.1_release" author="Purnima Jain">
+		<tagDatabase tag="_0.1.1_release" />
+	</changeSet>
+
+	<!-- Insert data in CATEGORIES table -->
+    <changeSet id="Add list of CATEGORIES" author="Purnima Jain">
+        <insert tableName="CATEGORIES">
+            <column name="CAT_NAME" value="Food" />
+        </insert>
+        <insert tableName="CATEGORIES">
+            <column name="CAT_NAME" value="Clothes" />
+        </insert>
+        <insert tableName="CATEGORIES">
+            <column name="CAT_NAME" value="Electronics" />
+        </insert>
+
+        <rollback>
+            <delete tableName="CATEGORIES" />
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>    

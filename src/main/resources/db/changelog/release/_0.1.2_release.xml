@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+   <preConditions>
+        <dbms type="postgresql" />
+    </preConditions>
+    
+    <!-- Tag so that we can rollback the change -->
+    <changeSet id="tag_create-_0.1.2_release" author="Purnima Jain" >
+        <tagDatabase tag="_0.1.2_release" />
+    </changeSet>
+    
+   <!-- Create PRODUCTS table -->
+   <changeSet id="Create PRODUCTS table" author="Purnima Jain">
+   		<sql><![CDATA[
+	   			CREATE TABLE IF NOT EXISTS products (
+					pro_id SERIAL,
+					pro_name VARCHAR(100) NOT NULL,
+					PRIMARY KEY (pro_id)
+				);
+			]]>
+        </sql>
+        
+        <rollback>
+            <sql>DROP TABLE IF EXISTS products;</sql>
+        </rollback>
+   
+    </changeSet>
+    
+</databaseChangeLog>    

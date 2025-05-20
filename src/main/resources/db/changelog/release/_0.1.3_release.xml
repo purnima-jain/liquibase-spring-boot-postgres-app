@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+   <preConditions>
+        <dbms type="postgresql" />
+    </preConditions>
+    
+    <!-- Tag so that we can rollback the change -->
+    <changeSet id="tag_create-_0.1.3_release" author="Purnima Jain" >
+        <tagDatabase tag="_0.1.3_release" />
+    </changeSet>
+    
+   <!-- Create ORDERS table -->
+   <changeSet id="Create ORDERS table" author="Purnima Jain">
+   		<sqlFile path="/db/changelog/sql/001_create_orders_table.sql" />
+        
+        <rollback>
+            <sqlFile path="/db/changelog/sql/001_create_orders_table_rollback.sql" />
+        </rollback>
+   
+    </changeSet>
+    
+</databaseChangeLog>    
