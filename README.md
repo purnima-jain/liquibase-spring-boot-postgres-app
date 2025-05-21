@@ -67,7 +67,7 @@ Add a Server using:
 
 You should be able to establish a connection and browse the database.
 
-## <img src="https://github.com/purnima-jain/miscellaneous-public/blob/master/icons/Spring-Boot_001.png" width=30 height=30 /> Liquibase Spring Boot Initialization
+## <img src="https://github.com/purnima-jain/miscellaneous-public/blob/master/icons/Spring-Boot_001.png" width=30 height=30 /> Spring Boot Initialization
 As a Spring Boot application, its a bare-bones Spring Boot application with only `spring-boot-starter-web` as a dependency needed in `pom.xml`.
 
 Github Commit [here](https://github.com/purnima-jain/liquibase-spring-boot-postgres-app/commit/52d199c38e831fd5885c842e1f9dd31bf2f5cc8b)
