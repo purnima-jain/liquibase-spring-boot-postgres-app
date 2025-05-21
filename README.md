@@ -2,7 +2,7 @@
 
 # Liquibase Integration with Spring Boot & PostgreSQL
 
-<img src="https://github.com/purnima-jain/miscellaneous-public/blob/master/icons/Java_001.svg" width=50 height=50 /> <img src="https://github.com/purnima-jain/miscellaneous-public/blob/master/icons/Maven_001.svg" width=50 height=50 /> <img src="https://github.com/purnima-jain/miscellaneous-public/blob/master/icons/Docker_001.svg" width=50 height=50 /> <img src="https://github.com/purnima-jain/miscellaneous-public/blob/master/icons/PostgreSQL_002.svg" width=50 height=50 /> <img src="https://github.com/purnima-jain/miscellaneous-public/blob/master/icons/Spring_001.svg" width=50 height=50 /> <img src="https://github.com/purnima-jain/miscellaneous-public/blob/master/icons/pgAdmin_001.svg" width=50 height=50 /> <img src="https://github.com/purnima-jain/miscellaneous-public/blob/master/icons/Liquibase_002.png" width=50 height=50 />
+<img src="https://github.com/purnima-jain/miscellaneous-public/blob/master/icons/Java_001.svg" width=50 height=50 /> <img src="https://github.com/purnima-jain/miscellaneous-public/blob/master/icons/Maven_001.svg" width=50 height=50 /> <img src="https://github.com/purnima-jain/miscellaneous-public/blob/master/icons/Docker_001.svg" width=50 height=50 /> <img src="https://github.com/purnima-jain/miscellaneous-public/blob/master/icons/Postgresql_002.svg" width=50 height=50 /> <img src="https://github.com/purnima-jain/miscellaneous-public/blob/master/icons/Spring_001.svg" width=50 height=50 /> <img src="https://github.com/purnima-jain/miscellaneous-public/blob/master/icons/pgAdmin_001.svg" width=50 height=50 /> <img src="https://github.com/purnima-jain/miscellaneous-public/blob/master/icons/Liquibase_002.png" width=50 height=50 />
 
 This repository contains code for the demo of Liquibase integration with a Spring Boot application. The codebase has been intentionally kept as plain vanilla as possible.
 
@@ -67,7 +67,7 @@ Add a Server using:
 
 You should be able to establish a connection and browse the database.
 
-## <img src="https://github.com/purnima-jain/miscellaneous-public/blob/master/icons/Spring-Boot_001.png" width=30 height=30 /> Liquibase Integration with Spring Boot
+## <img src="https://github.com/purnima-jain/miscellaneous-public/blob/master/icons/Spring-Boot_001.png" width=30 height=30 /> Liquibase Spring Boot Initialization
 As a Spring Boot application, its a bare-bones Spring Boot application with only `spring-boot-starter-web` as a dependency needed in `pom.xml`.
 
 Github Commit [here](https://github.com/purnima-jain/liquibase-spring-boot-postgres-app/commit/52d199c38e831fd5885c842e1f9dd31bf2f5cc8b)
@@ -75,25 +75,25 @@ Github Commit [here](https://github.com/purnima-jain/liquibase-spring-boot-postg
 ## <img src="https://github.com/purnima-jain/miscellaneous-public/blob/master/icons/Liquibase_002.png" width=30 height=30 /> Liquibase Integration with Spring Boot
 1. The three dependencies required for Liquibase integration have been added in `pom.xml`.
 ```xml
-		<!-- Dependencies for Liquibase - Start -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-jdbc</artifactId>
-		</dependency>
+    <!-- Dependencies for Liquibase - Start -->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-jdbc</artifactId>
+    </dependency>
 
-		<dependency>
-			<groupId>org.liquibase</groupId>
-			<artifactId>liquibase-core</artifactId>
-		</dependency>
+    <dependency>
+        <groupId>org.liquibase</groupId>
+        <artifactId>liquibase-core</artifactId>
+    </dependency>
 
-		<!-- Postgres - Start -->
-		<dependency>
-			<groupId>org.postgresql</groupId>
-			<artifactId>postgresql</artifactId>
-		</dependency>
-		<!-- Postgres - End -->
+    <!-- Postgres - Start -->
+    <dependency>
+        <groupId>org.postgresql</groupId>
+        <artifactId>postgresql</artifactId>
+    </dependency>
+    <!-- Postgres - End -->
 
-		<!-- Dependencies for Liquibase - End -->
+    <!-- Dependencies for Liquibase - End -->
 ```
 2. The database changelog master file and its associated child files are [here](https://github.com/purnima-jain/liquibase-spring-boot-postgres-app/tree/master/src/main/resources/db/changelog)
 
@@ -127,9 +127,9 @@ spring.liquibase.change-log=classpath:db/changelog/db-changelog-master.xml
 
 2. The individual change sets have their own corresponding rollback sections.
 ```xml
-		<rollback>
-			<dropTable tableName="CATEGORIES" />
-		</rollback>
+    <rollback>
+        <dropTable tableName="CATEGORIES" />
+    </rollback>
 ```
 
 3. We perform a rollback via a REST API: http://localhost:8080/rollback/tag/{tagToRollbackTo}
